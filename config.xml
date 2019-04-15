@@ -1,0 +1,6 @@
+<config-file platform="android" parent"/manifest/application" mode="merge">
+  <plugin name="cordova-plugin-whitelist" source="npm"/>
+  <!-- Don't block and requests -->
+<access orgin="*" />
+<allow-navigation href="*" />
+</config-file>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/hu.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        // Get ID from URL
+		function getID() {
+			id = window.location.search.substring(1);
+			id = id.split("=");
+			return id[1];
+		}
+		var id = getID();
+		console.log(id);
+
+        $(document).ready( function() {
+            $("#delete").click( function() {
+                $.ajax( {
+                    type: "POST",
+                    url:"http://csis.svsu.edu/~afroth/355prog05/delete.php",
+                    data: "id="+getID()+"&delete=",
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function(){ $("#delete").val('Connecting...');},
+                    success: function(data){ location.href = "customer.html"; }
+                });
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="padding">
+        <div class="title">Delete a Customer</div>
+        <p><a href="customer.html" class="btn btn-primary">Back to Start</a></p>
+        <p class="alert alert-error">Are you sure you want to delete?</p>
+        <div class="form-actions">
+            <input type="button" id="delete" class="btn btn-danger" value="Yes"/>
+            <a class="btn" href="customer.html">No</a>
+        </div>
+    </div>
+</body>
